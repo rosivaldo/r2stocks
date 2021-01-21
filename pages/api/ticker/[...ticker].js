@@ -14,12 +14,12 @@ export default async function index(request, response) {
         const tickerResponseJSON = await tickerResponse.json();
 
         const output = tickerResponseJSON[payload.prop];
+
+        response.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate');
         response.status(200).json(output);
     } else {
         response.status(401).json({
-            error: "Unauthorized",
-            secret: selfSecret,
-            key: request.query.key
+            error: "Unauthorized"
         });
     }
 }

@@ -13,7 +13,7 @@ export default async function index(request, response) {
 
     if (request.query.key == selfSecret) {
         if (payload.prop == 'cache') {
-            response.status(200).json({output:payload.prop});
+            response.status(200).json({output:cacheTtl});
         } else {
             const tickerResponse = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${payload.ticker}&apikey=${apiSecret}`);
             const tickerResponseJSON = await tickerResponse.json();

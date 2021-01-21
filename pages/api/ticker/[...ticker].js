@@ -17,7 +17,9 @@ export default async function index(request, response) {
         response.status(200).json(output);
     } else {
         response.status(401).json({
-            error: "Unauthorized"
+            error: "Unauthorized",
+            secret: selfSecret,
+            key: request.query.key
         });
     }
 }
